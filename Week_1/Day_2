@@ -1,0 +1,72 @@
+# Day 2 Notes
+In lecture, Dominic went through creating a sum function with some edge cases. We went one by one of what the question was asking for, and added them in case by case. Some notes on it were:
+- array.slice(start,end) -> this will return a new array of the sliced section of the array
+- array.splice() this will return you what you SPLICED! 
+- accumulator = a variable() that collects data from an iterative process and stores it for later. When you return, you return whatever value is is in the accumulator. This looks like the reference variable. We used total = 0;
+- Number.IsInteger(varible to check) -> this will return truthy or falsy.. uf this were in an if statement, it would run if true. We used:
+```
+ if (Number.isInteger(convertedNum)) {
+    total += convertedNum;
+  }
+  ```
+  to determine whether the total were to increment or not. If it were an integer, it would loop.
+  - isNaN() function determines whether value is NaN or not.
+  - hardquoting a console log in a function is not a good idea. you should always return a value.
+  - more smaller functions are better than one big long function that does multiple things. A function should have a single goal. 
+### Code to find the minimum value
+  ```
+  const min = function(numbers) {
+  let min = numbers[0];
+  for (let i = 0; i < numbers.length; i++) {
+    if (min > numbers[i]) {
+      min = numbers[i];
+    }
+  }
+  return min;
+}; 
+```
+
+### Pseudocode
+I believe this is when you write out what your code is going to do wihtout applying the syntaxes or anything. For example, the lighthouse labs loopylighthouse challenge would look like this in pseudocode:
+
+Loop from 100 to 200:
+  Let num = the current step in the loop
+  If num % 3 is equal to 0 and num % 4 is equal to 0:
+    Print "LoopyLighthouse"
+  Else if num % 3 is equal to 0:
+    Print "Loopy"
+  Else if num % 4 is equal to 0:
+    Print "Lighthouse"
+  Otherwise
+    Print num
+  End if
+End loop
+
+translated to javascript looks like this:
+```
+for (let num = 100; num <= 200; num++) {
+  if (num % 3 === 0 && num % 4 === 0) {
+    console.log("LoopyLighthouse");
+  } else if (num % 3 === 0) {
+    console.log("Loopy");
+  } else if (num % 4 === 0) {
+    console.log("Lighthouse");
+  } else {
+    console.log(num);
+  }
+}
+```
+but this can be refactored to be more efficient and use less code. We can define an empty string  and start building it as we go! Like the above accumulator :) The code above refactored would look like:
+```
+for (const num of nums) {
+  let output = "";
+
+  if (num % 3 === 0) {
+    output += "Loopy";
+  }
+  if (num % 4 === 0) {
+    output += "Lighthouse";
+  }
+  console.log(output === "" ? num : output);
+}
+```
